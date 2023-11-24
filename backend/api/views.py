@@ -2,6 +2,7 @@ import json
 from django.http import JsonResponse
 
 def api_home(request, *arg, **kwargs):
+    print(request.GET)
     body = request.body
     data={}
     try:
