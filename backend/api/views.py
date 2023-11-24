@@ -9,10 +9,10 @@ def api_home(request, *arg, **kwargs):
     except:
         pass
     print(data)
-    data['headers']=dict(request.headers)
+    # data['headers']=dict(request.headers)
 
-    print(request.headers)
-    data['content_type']=request.content_type
+    # print(request.headers)
+    # data['content_type']=request.content_type
     return JsonResponse(data)
     
 
