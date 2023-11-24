@@ -11,10 +11,10 @@ def api_home(request, *arg, **kwargs):
         pass
     print(data)
     data['params']=request.GET
-    data['headers']=dict(request.headers)
+    # data['headers']=dict(request.headers)
 
     # print(request.headers)
-    # data['content_type']=request.content_type
+    data['content_type']=request.content_type
     return JsonResponse(data)
     
 
