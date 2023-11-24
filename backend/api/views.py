@@ -4,8 +4,7 @@ from django.http import JsonResponse, HttpResponse
 from products.models import Product
 def api_home(request, *arg, **kwargs):
     model_data = Product.objects.all().order_by('?').first()
-    data ={}
+    data={}
     if model_data:
-        data = model_to_dict(model_data )
-    return JsonResponse(data)    
-
+        data = model_to_dict(model_to_dict)
+    return JsonResponse(data)
