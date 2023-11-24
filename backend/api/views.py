@@ -10,7 +10,8 @@ def api_home(request, *arg, **kwargs):
     except:
         pass
     print(data)
-    # data['headers']=dict(request.headers)
+    data['params']=request.GET
+    data['headers']=dict(request.headers)
 
     # print(request.headers)
     # data['content_type']=request.content_type
