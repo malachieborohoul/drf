@@ -10,7 +10,6 @@ from products.serializers import ProductSerializer
 def api_home(request, *args, **kwargs):
     instance = Product.objects.all().order_by('?').first()
     data ={}
-
     if instance:
         data = ProductSerializer(instance).data
     return Response(data)
