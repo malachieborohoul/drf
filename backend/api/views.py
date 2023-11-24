@@ -1,20 +1,14 @@
 import json
 from django.http import JsonResponse
-
+from products.models import Product
 def api_home(request, *arg, **kwargs):
-    print(request.GET)
-    body = request.body
-    data={}
-    try:
-        data = json.loads(body)
-    except:
-        pass
-    print(data)
-    data['params']=request.GET
-    # data['headers']=dict(request.headers)
+    model_data = Product.objects.all().order_by('?').first()
+    data ={}
+    if model_data:
+        data['title']=model_data.title
+        data['content']=model_data.content
+        data['price']=model_data.price
 
-    # print(request.headers)
-    data['content_type']=request.content_type
     return JsonResponse(data)
     
 
