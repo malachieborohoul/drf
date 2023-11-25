@@ -12,9 +12,9 @@ from products.serializers import ProductSerializer
 def api_home(request, *args, **kwargs):
     serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
+        instance = serializer.save()
         print(serializer.data)
-        data = serializer.data
-        return Response(data) 
+        return Response(serializer.data) 
 
 # @api_view(['GET'])
 # def api_home(request, *args, **kwargs):
