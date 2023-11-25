@@ -8,11 +8,17 @@ from products.models import Product
 from products.serializers import ProductSerializer
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 def api_home(request, *args, **kwargs):
-    instance = Product.objects.all().order_by('?').first()
-    data ={}
+    data = request.data
+    return Response(data)
 
-    if instance:
-        data = ProductSerializer(instance).data
-    return Response(data) 
+# @api_view(['GET'])
+# def api_home(request, *args, **kwargs):
+#     instance = Product.objects.all().order_by('?').first()
+#     data ={}
+
+#     if instance:
+#         data = ProductSerializer(instance).data
+#     return Response(data) 
+ 
