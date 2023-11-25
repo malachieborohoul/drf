@@ -11,14 +11,14 @@ from products.serializers import ProductSerializer
 @api_view(['POST'])
 def api_home(request, *args, **kwargs):
     serializer = ProductSerializer(data=request.data)
-    if serializer.is_valid():
-        instance = serializer.save()
+    if serializer.is_valid(raise_exception=True):
+        # instance = serializer.save()
         return Response(serializer.data)
 
 # @api_view(['GET'])
 # def api_home(request, *args, **kwargs):
 #     instance = Product.objects.all().order_by('?').first()
-#     data ={}
+#     data ={} 
 
 #     if instance:
 #         data = ProductSerializer(instance).data
