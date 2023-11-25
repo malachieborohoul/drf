@@ -10,8 +10,11 @@ from products.serializers import ProductSerializer
 
 @api_view(['POST'])
 def api_home(request, *args, **kwargs):
-    data = request.data
-    return Response(data) 
+    serializer = ProductSerializer(data=request.data)
+    if serializer.is_valid():
+        print(serializer.data)
+        data = serializer.data
+        return Response(data) 
 
 # @api_view(['GET'])
 # def api_home(request, *args, **kwargs):
