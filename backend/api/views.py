@@ -11,5 +11,5 @@ def api_home(request, *args, **kwargs):
     instance = Product.objects.all().order_by('?').first()
     data = {}
     if instance:
-        data = ProductSerializer(instance)
+        data = ProductSerializer(instance).data
     Response(data)
