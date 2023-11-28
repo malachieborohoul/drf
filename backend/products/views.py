@@ -6,7 +6,7 @@ from .serializers import ProductSerializer
 # ProductDeProProductDetaiAP
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer(queryset)
+    serializer_class = ProductSerializer
 
 
- 
+  
