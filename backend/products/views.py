@@ -30,7 +30,7 @@ from django.shortcuts import get_object_or_404
 #     serializer_class = ProductSerializer
 
 @api_view(['GET', 'POST'])
-def product_alt_view(request, *args, **kwargs):
+def product_alt_view(request,pk=None, *args, **kwargs):
     method=request.method
 
     if method=="GET":
