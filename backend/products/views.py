@@ -4,26 +4,45 @@ from .models import Product
 
 from .serializers import ProductSerializer
 
+from rest_framework.response import Response
+
+from rest_framework.decorators import api_view
+
 # 
-class ProductListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+# class ProductListCreateAPIView(generics.ListCreateAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
 
-    def perform_create(self, serializer):
-        # serializer.save(user=self.request.user)
-        # print(serializer.validated_data)
-        title = serializer.validated_data.get('title')
-        content = serializer.validated_data.get('content') or None
+#     def perform_create(self, serializer):
+#         # serializer.save(user=self.request.user)
+#         # print(serializer.validated_data)
+#         title = serializer.validated_data.get('title')
+#         content = serializer.validated_data.get('content') or None
 
-        if content is None:
-            content =title
-        serializer.save(content=content)
+#         if content is None:
+#             content =title
+#         serializer.save(content=content)
 
-class ProductDetailAPIView(generics.RetrieveAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+# class ProductDetailAPIView(generics.RetrieveAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+
+@api_view(['GET', 'POST'])
+def product_alt_view(request, *args, **kwargs):
+    method=request.method
+
+    if method=="GET":
+        pass
+        # url_args
+        # get request -> detail view
+        # list view
+    if method=="POST":
+        pass
+        # create an item
+        serialize = ProductSerializer(data=request.data)
+        if serialize.is_valid(raise_exception=True):
+            return Response(serialize.data)
 
 
-# class ProductListAPIView(generics.ListAPIView):
-#     queryset= Product.objects.all()
-#     serializer_class=ProductSerializer
+    if method=="PUT":
+        pass
