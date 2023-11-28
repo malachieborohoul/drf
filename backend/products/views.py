@@ -8,6 +8,8 @@ from rest_framework.response import Response
 
 from rest_framework.decorators import api_view
 
+from django.shortcuts import get_object_or_404
+
 # 
 # class ProductListCreateAPIView(generics.ListCreateAPIView):
 #     queryset = Product.objects.all()
@@ -36,6 +38,10 @@ def product_alt_view(request, *args, **kwargs):
         # url_args
         # get request -> detail view
         # list view
+
+        queryset = Product.objects.all()
+        data = ProductSerializer(queryset, many=True).data
+        return Response(data)
     if method=="POST":
         pass
         # create an item
