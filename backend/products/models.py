@@ -8,6 +8,6 @@ class Product(models.Model):
     price = models.DecimalField(max_length=125)
 
     @property
-    def sale_price():
-        return 
+    def sale_price(self):
+        return (float(self.price)*.8)
 
