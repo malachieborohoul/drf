@@ -46,7 +46,7 @@ def product_alt_view(request, pk=None, *args, **kwargs):
     if method=="POST":
         serializer=ProductSerializer(data=request.data)
 
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True ):
             title = serializer.validated_data.get('title')
             content = serializer.validated_data.get('content')
 
