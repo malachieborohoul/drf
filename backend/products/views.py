@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, mixins
 
 from .models import Product
 
@@ -46,7 +46,18 @@ class ProductDeleteAPIView(generics.DestroyAPIView):
     def perform_destroy(self, instance):
         return super().perform_destroy(instance)      
     
+    
 
+class ProductMixinView(
+    mixins.ListModelMixin,
+    generics.GenericAPIView):
+    queryset=Product.objects.all()
+    serializer_class = ProductSerializer
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        return 
 
 def product_alt_view(request, pk=None, *args, **kwargs):
     method = request.method
