@@ -66,6 +66,14 @@ class ProductMixinView(
     
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+     # Create
+    def perform_create(self, serializer):
+        title = serializer.validated_data.get('title')
+        content = serializer.validated_data.get('content')
+
+        if content is None:
+            content = title
+        serializer.save(content=content)
 
 def product_alt_view(request, pk=None, *args, **kwargs):
     method = request.method
