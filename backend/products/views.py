@@ -35,7 +35,7 @@ def product_alt_view(request,pk=None, *args, **kwargs):
 
     if method=="GET":
         if pk is not None:
-            queryset = Product.objects.filter(pk=pk)
+            obj = get_object_or_404(Product, pk=pk)
             return Response()
 
     else:
