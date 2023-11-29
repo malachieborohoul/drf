@@ -34,10 +34,11 @@ def product_alt_view(request,pk=None, *args, **kwargs):
     method=request.method
 
     if method=="GET":
-        pass
-        # url_args
-        # get request -> detail view
-        # list view
+        if pk is not None:
+            queryset = Product.objects.filter(pk=pk)
+            return Response()
+
+    else:
 
         queryset = Product.objects.all()
         data = ProductSerializer(queryset, many=True).data
