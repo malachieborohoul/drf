@@ -49,6 +49,7 @@ class ProductDeleteAPIView(generics.DestroyAPIView):
     
 
 class ProductMixinView(
+    mixins.CreateModelMixin,
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
     generics.GenericAPIView):
@@ -64,7 +65,7 @@ class ProductMixinView(
         return self.list(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
-        return 
+        return self.create(request, *args, **kwargs)
 
 def product_alt_view(request, pk=None, *args, **kwargs):
     method = request.method
