@@ -36,6 +36,10 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
     lookup_field = 'pk'
 
     def perform_update(self, serializer):
+        instance = serializer.save()
+        if not instance.content:
+            instance.content = instance.title
+
 
 # @api_view(["GET", "POST"])
 # def product_alt_view(request, pk=None, *args, **kwargs):
