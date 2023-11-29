@@ -1,5 +1,5 @@
 import requests
-endpoint="http://localhost:8000/api/products/2/"
+endpoint="http://localhost:8000/api/products/update/2/"
 data ={
     "title":"This is dope man",
     "price":208.02,
