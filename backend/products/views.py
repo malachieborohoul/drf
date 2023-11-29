@@ -11,23 +11,23 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
 
 # 
-# class ProductListCreateAPIView(generics.ListCreateAPIView):
-#     queryset = Product.objects.all()
-#     serializer_class = ProductSerializer
+class ProductListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
-#     def perform_create(self, serializer):
-#         # serializer.save(user=self.request.user)
-#         # print(serializer.validated_data)
-#         title = serializer.validated_data.get('title')
-#         content = serializer.validated_data.get('content') or None
+    def perform_create(self, serializer):
+        # serializer.save(user=self.request.user)
+        # print(serializer.validated_data)
+        title = serializer.validated_data.get('title')
+        content = serializer.validated_data.get('content') or None
 
-#         if content is None:
-#             content =title
-#         serializer.save(content=content)
+        if content is None:
+            content =title
+        serializer.save(content=content)
 
-# class ProductDetailAPIView(generics.RetrieveAPIView):
-#     queryset = Product.objects.all()
-#     serializer_class = ProductSerializer
+class ProductDetailAPIView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 @api_view(['GET', 'POST'])
 def product_alt_view(request,pk=None, *args, **kwargs):
@@ -37,19 +37,15 @@ def product_alt_view(request,pk=None, *args, **kwargs):
         if pk is not None:
             obj = get_object_or_404(Product, pk=pk)
             return Response()
-
-    else:
-
-        queryset = Product.objects.all()
-        data = ProductSerializer(queryset, many=True).data
-        return Response(data)
+        else:
+            queryset = Product.objects.all()
+            data = ProductSerializer(queryset, many=True).data
+            return Response(data)
     if method=="POST":
-        pass
         # create an item
         serialize = ProductSerializer(data=request.data)
         if serialize.is_valid(raise_exception=True):
             return Response(serialize.data)
 
 
-    if method=="PUT":
-        pass
+     
