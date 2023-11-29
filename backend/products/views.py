@@ -29,23 +29,25 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-@api_view(['GET', 'POST'])
+
 def product_alt_view(request,pk=None, *args, **kwargs):
-    method=request.method
+    method = request.method
 
     if method=="GET":
         if pk is not None:
-            obj = get_object_or_404(Product, pk=pk)
-            return Response()
+            obj= get_object_or_404(Product, pk=pk)
+            data = ProductSerializer(obj, many=False)
+            return Response(data)
         else:
             queryset = Product.objects.all()
-            data = ProductSerializer(queryset, many=True).data
+            data = ProductSerializer(queryset, many=True)
             return Response(data)
+        
     if method=="POST":
-        # create an item
-        serialize = ProductSerializer(data=request.data)
-        if serialize.is_valid(raise_exception=True):
-            return Response(serialize.data)
+       serializer = ProductSerializer(data=request.data)
+
+       
+
 
 
      
