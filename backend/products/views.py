@@ -45,7 +45,33 @@ class ProductDeleteAPIView(generics.DestroyAPIView):
 
     def perform_destroy(self, instance):
         return super().perform_destroy(instance)      
+    
 
 
+def product_alt_view(request, pk=None, *args, **kwargs):
+    method = request.method
 
-     
+    if method == "GET":
+        if pk is not None:
+            obj = get_object_or_404(Product, pk=pk)
+            data = ProductSerializer(obj, many=False).data
+            return Response(data)
+        else:
+            instance = Product.objects.all()
+            data = ProductSerializer(instance, many=True).data
+
+            return Response(data)
+
+    
+    if method=="POST":
+        serializer = ProductSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            title = serializer.validated_data.get('title')
+            content = serializer.validated_data.get('content')
+
+            if content is None:
+                content = title
+            serializer.save(content=content)
+            return Response(serializer.data)
+
