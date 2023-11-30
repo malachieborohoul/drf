@@ -10,12 +10,12 @@ from rest_framework.decorators import api_view
 
 from django.shortcuts import get_object_or_404
 
-
+# permission_classe
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     authentication_classes =[authentication.SessionAuthentication]
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.DjangoModelPermissions]
 
     def perform_create(self, serializer):
         title = serializer.validated_data.get('title')
@@ -32,7 +32,10 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
 class ProductUpdateAPIView(generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    authentication_classes=[authentication.SessionAuthentication]
+    permission_classes=[permissions.DjangoModelPermissions]
     lookup_field = 'pk'
+
 
     def perform_update(self, serializer):
         instance = serializer.save()
