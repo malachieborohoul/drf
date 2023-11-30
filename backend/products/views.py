@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view
 
 from django.shortcuts import get_object_or_404
 
-# permperm
+# permper
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
