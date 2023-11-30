@@ -59,6 +59,7 @@ def product_alt_view(request, *args, **kwargs):
             data = ProductSerializer(queryset, many=False).data
             return Response(data)
         else:
-            queryset = Product.objects.all():
+            queryset = Product.objects.all()
             data = ProductSerializer(queryset, many=True).data
+            return Response(data)
 
