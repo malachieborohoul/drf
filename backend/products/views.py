@@ -55,11 +55,25 @@ def product_alt_view(request, *args, **kwargs):
         pk = kwargs.get('pk')
 
         if pk is not None:
-            queryset = Product.objects.all()
-            data = ProductSerializer(queryset, many=False).data
+            obj = get_object_or_404(Product,pk=pk)
+            data = ProductSerializer(obj, many=False).data
             return Response(data)
         else:
             queryset = Product.objects.all()
             data = ProductSerializer(queryset, many=True).data
             return Response(data)
+    if method == "POST":
+        serializer = ProductSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            title = serializer.validated_data.get('title')
+            content = serializer.validated_data.get('content')
+
+            if content is None:
+                content = title
+            serializer.save()
+            return Response(serializer.data)
+
+
+        
 
