@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 from .permissions import IsStaffEditorPermission
 
 from api.authentication import TokenAuthentication
-# ProductPro
+# ProductPr
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
