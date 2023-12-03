@@ -14,6 +14,10 @@ from .permissions import IsStaffEditorPermission
 
 from api.authentication import TokenAuthentication
 
+class ProductRetriveAPIView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class= ProductSerializer
+
 @api_view(['GET', 'POST'])
 def product_alt_view(request, *args, **kwargs):
     method = request.method
