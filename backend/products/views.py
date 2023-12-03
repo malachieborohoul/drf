@@ -18,6 +18,12 @@ class ProductRetriveAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class= ProductSerializer
 
+
+class ProductListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
 @api_view(['GET', 'POST'])
 def product_alt_view(request, *args, **kwargs):
     method = request.method
