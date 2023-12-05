@@ -14,7 +14,7 @@ from .permissions import IsStaffEditorPermission
 
 from api.authentication import TokenAuthentication
 
-# ResponseSuccessResponseSuccessResponseSuccessRe
+# ResponseSuccessResponseSuccessResponseSuccessR
 
 class ProductRetriveAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
