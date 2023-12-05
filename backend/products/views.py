@@ -14,6 +14,8 @@ from .permissions import IsStaffEditorPermission
 
 from api.authentication import TokenAuthentication
 
+# ResponseSuccessResponseSuccessResponseSuccessResponseSucce
+
 class ProductRetriveAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class= ProductSerializer
